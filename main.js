@@ -70,16 +70,9 @@ function displayDetailedInfo(movieDetails) {
             <br><br>
             <p><b>Genre:</b> ${movieDetails.Genre}</p>
             <p><b>Plot:</b> ${movieDetails.Plot} </p>
-            <br>
-            <p>Rating: ${movieDetails.Ratings}</p>    
+            <br> 
     `;
 
     displayDetails.appendChild(displayPoster);
     displayDetails.appendChild(displayInfo);
 }
-
-
-
-
-
-
