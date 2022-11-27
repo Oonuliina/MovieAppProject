@@ -1,66 +1,82 @@
 let searchButton = document.getElementById("search-btn");
 let inputField = document.getElementById("searchinput");
 let displayMovies = document.getElementById("movielist");
+let displayDetails = document.getElementById("moviedetails");
 
 searchButton.addEventListener('click', getMovieName);
 
-
-
-//const apikey = "a8025d49";
-//let url = "http://www.omdbapi.com/?apikey=" + apikey;
 function getMovieName() {
+    displayDetails.style.display = 'none';
     var movieName = inputField.value;
     loadMovies(movieName);
 }
 
 async function loadMovies(movieName) {
-    const URL = `http://www.omdbapi.com/?s=${movieName}&apikey=a8025d49`;
-    const resultst = await fetch(URL);
+    const resultst = await fetch(`http://www.omdbapi.com/?s=${movieName}&apikey=a8025d49`);
     const data = await resultst.json();
-    const obj = data.Search;
-    addMovie(obj);
-
-/*      if(data.Response = "True") {
-        showMovies(data.Search);
-    }  */
-}
-
-
+    console.log(data.Response);
+    if(data.Response == "True") {
+        addMovie(data.Search);
+    } else {
+        alert("Try something else!");
+    }
+}    
 
 function addMovie(movieDetails) {
+    displayMovies.innerHTML = "";
     inputField.value = "";
     for(var i = 0; i < movieDetails.length; i++)  {
         movieInfo = document.createElement("div");
+        movieInfo.classList.add("movie-info");
+        movieInfo.dataset.id = movieDetails[i].imdbID;
         movieInfo.innerHTML = `
-        <p>${movieDetails[i].Title}</p>
-        <p>${movieDetails[i].Year}</p>
-        <p>${movieDetails[i].Type}</p>
         <img src="${movieDetails[i].Poster}"/>
+        <p><b>Movie title:</b> ${movieDetails[i].Title}</p>
+        <p><b>Year:</b> ${movieDetails[i].Year}</p>
+        <p><b>Type:</b> ${movieDetails[i].Type}</p>
         `;
+        
         displayMovies.appendChild(movieInfo);
     }
+   getDetailedInfo();
 }
 
-/* function clearSearch(resultst) {
-    while(resultst.length > 0) {
+function getDetailedInfo() {
+    const movies = displayMovies.querySelectorAll('.movie-info');
+        movies.forEach(movie => {
+            movie.addEventListener('click', async () => {
+                const result = await fetch(`https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=a8025d49`);
+                const data = await result.json();
+                displayDetailedInfo(data);
+            });
+        });
+}
 
-    }
-}  */
+function displayDetailedInfo(movieDetails) {
+    displayDetails.style.display = 'block';
+    displayDetails.innerHTML = "";
+    displayInfo = document.createElement("div");
+    displayInfo.classList.add("detailed-info");
+    
+    displayPoster = document.createElement("div");
+    displayPoster.classList.add("movie-poster");
+    displayPoster.style.backgroundImage = `<img src="${movieDetails.Poster}"/>`;
+    
+    displayPoster.innerHTML = `
+        <img src="${movieDetails.Poster}"/>
+        <div class="header-container">
+            <h1>${movieDetails.Title}</h1>
+            <p>${movieDetails.Year} · ${movieDetails.Runtime}</p>
+            <br><br>
+            <p><b>Genre:</b> ${movieDetails.Genre}</p>
+            <p><b>Plot:</b> ${movieDetails.Plot} </p>
+            <br>
+            <p>Rating: ${movieDetails.Ratings}</p>    
+    `;
 
-
-
-
-
-
-
-
-/* function showMovies(movies) {
-    inputField.innerHTML = "";
-    for(let i = 0; i < movies.length; i++) {
-        let movieDiv = document.createElement("div");
-        console.log(movieDiv);
-    }
-} */
+    displayDetails.appendChild(displayPoster);
+    displayDetails.appendChild(displayInfo);
+}
 
 
 
