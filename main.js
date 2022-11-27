@@ -12,7 +12,7 @@ function getMovieName() {
 }
 
 async function loadMovies(movieName) {
-    const resultst = await fetch(`http://www.omdbapi.com/?s=${movieName}&apikey=a8025d49`);
+    const resultst = await fetch(`https://www.omdbapi.com/?s=${movieName}&apikey=a8025d49`);
     const data = await resultst.json();
     console.log(data.Response);
     if(data.Response == "True") {
