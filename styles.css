@@ -5,7 +5,6 @@ html {
 }
 
 body {
-    max-width: 1920px;
     width: 100%;
 }
 
@@ -13,7 +12,9 @@ body {
   text-align: center;
   font-family: 'Anton', sans-serif;
   font-size: 80px;
+  margin-top: 0%;
 }
+
 
 .main-title:after {
     content:'Flix';
@@ -61,6 +62,7 @@ body {
 .movie-details {
     padding: 40px;
     height: 450px;
+    max-width: 1820px;
     overflow: hidden;
 }
 
@@ -75,11 +77,13 @@ body {
 .header-container {
     padding-left: 30px;
     padding-right: 100px;   
+    
 }    
 
 .header-container h1 {
     font-size: 70px;
     font-family: 'Anton', sans-serif;
+    margin-top: 0%;
 }
 
 .header-container p {
@@ -109,3 +113,10 @@ body {
     color: #FFBF00;
     font-weight: bolder;
 }
+
+
+
+
+
+
+
