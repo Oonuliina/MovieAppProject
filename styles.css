@@ -4,17 +4,21 @@ html {
     font-family: 'Lato', sans-serif;
 }
 
+body {
+    max-width: 1920px;
+    width: 100%;
+}
+
 .main-title {
   text-align: center;
   font-family: 'Anton', sans-serif;
-  font-size: 100px;
+  font-size: 80px;
 }
 
 .main-title:after {
     content:'Flix';
     color: #FFBF00;
 }
-
 
 .searchbar-input {
     width: 600px;
@@ -32,11 +36,12 @@ html {
 
 .searchbar-container {
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .movie-list {
     display: flex;
+    overflow:visible;
 }
 
 .movie-info {
@@ -54,29 +59,53 @@ html {
 }
 
 .movie-details {
-    padding: 50px;
+    padding: 40px;
+    height: 450px;
+    overflow: hidden;
 }
 
-.movie-poster {
-    display: flex;
-    background-color: #1B1B1B;
-    padding: 20px;
+.poster-container {
+    display: flex;   
 }
 
-.movie-poster img {
-    width: 400px;
+.poster-container img {
+    align-self: center;
 }
 
 .header-container {
     padding-left: 30px;
-    padding-right: 100px;
+    padding-right: 100px;   
 }    
 
 .header-container h1 {
-    font-size: 80px;
+    font-size: 70px;
     font-family: 'Anton', sans-serif;
 }
 
 .header-container p {
-    width: 500px;
+    width: 600px;
+}
+
+.genre:before {
+    content:'Genre';
+    color: #FFBF00;
+    font-weight: bolder;
+}
+
+.plot:before {
+    content:'Plot';
+    color: #FFBF00;
+    font-weight: bolder;
+}
+
+.language:before {
+    content:'Language';
+    color: #FFBF00;
+    font-weight: bolder;
+}
+
+.rating:before {
+    content:'Rating IMDb';
+    color: #FFBF00;
+    font-weight: bolder;
 }
